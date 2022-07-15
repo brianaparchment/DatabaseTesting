@@ -21,3 +21,9 @@ except mariadb.Error as e:
     sys.exit(1)
 
 point = connect_db.cursor() #get cursor
+
+point.execute(
+    "SELECT transcriptID FROM transcript"
+)
+for (transcriptID) in point:
+    print(f"TranscriptID: {transcriptID}")
