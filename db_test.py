@@ -33,33 +33,38 @@ class Access_db(unittest.TestCase):
         print(self.instructions)
         print(self.descriptions)
 
-        student_list = []
+        student_list = [] 
         point.execute("SELECT * FROM student")
         for row in point:
             #add table info into list 
             student_list.append(row)
-        print(student_list)
+        
 
         transcript_list = []
         point.execute("SELECT * FROM transcript")
         for row in point:
             transcript_list.append(row)
-        print(transcript_list)
+        
+
+        personalInfo_list = []
+        point.execute("SELECT * FROM personalInfo")
+        for row in point:
+            personalInfo_list.append(row)
 
 
         #user input to select specific records from database
-        #self.user_input = input("Enter a table name to view all records from a specific table\n or Enter a studentID to view all records for a student: ")
+        self.user_input = input("Enter a table name to view all records from a specific table:\n ")
+        if self.user_input == "student":
+            print(student_list) #print list based on user input
+        elif self.user_input == "transcript":
+            print(transcript_list)
+        elif self.user_input == "personalInfo":
+            print(personalInfo_list)
+        else:
+            print("Invalid Table Name") #prints if user enters table that does not exist
+
   
-       # point.execute(
-        #    "SELECT transcriptID, credit_earned, credit_attempt, gpa, year, studentID FROM transcript"
-       # )
-       # for (transcriptID, credit_earned, credit_attempt, gpa, year, studentID) in point:
-           # print(f"TranscriptID: {transcriptID}")
-          #  print(f"Credits Earned: {credit_earned} ") 
-           # print(f"Credits Attempted: {credit_attempt}") 
-          #  print(f"GPA: {gpa}") 
-          #  print(f"Year: {year}") 
-          #  print(f"StudentID: {studentID}")
+      
 
     def tearDown(self):
         point.close()
