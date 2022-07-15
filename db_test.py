@@ -16,3 +16,7 @@ try:
         port=3306,
         database="studentRecords" #name of db that will be accessed
     )
+except mariadb.Error as e:
+    print(f"Could not connect to MariaDB: {e}")
+    sys.exit(1)
+
