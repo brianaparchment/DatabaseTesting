@@ -28,47 +28,46 @@ class Access_db(unittest.TestCase):
         #instructions and description of each table in the database
         self.instructions = ("This program allows users to access records from the database StudentRecords.\n")
         self.descriptions = ("Table Names and Descriptions \n Transcript: contains each student's transcript information\n Student: contains each students ID and email\n Personal Info: contains demographic information about each student\n")
-        
-    def test_input(self):
         print(self.instructions)
         print(self.descriptions)
 
-        student_list = [] 
+        self.student_list = [] #empty list
         point.execute("SELECT * FROM student")
         for row in point:
             #add table info into list 
-            student_list.append(row)
-        
+            self.student_list.append(row)
 
-        transcript_list = []
+        self.transcript_list = []
         point.execute("SELECT * FROM transcript")
         for row in point:
-            transcript_list.append(row)
-        
+            self.transcript_list.append(row) #add table info into list 
 
-        personalInfo_list = []
+        self.personalInfo_list = []
         point.execute("SELECT * FROM personalInfo")
         for row in point:
-            personalInfo_list.append(row)
+            self.personalInfo_list.append(row) #add table info into list 
 
 
-        #user input to select specific records from database
+    def test_input(self):
         self.user_input = input("Enter a table name to view all records from a specific table:\n ")
+                
         if self.user_input == "student":
-            print(student_list) #print list based on user input
+            self.assertTrue(self.user_input == "student") #check user input
+            print(self.student_list) #print specified list/ table info
+       
         elif self.user_input == "transcript":
-            print(transcript_list)
-        elif self.user_input == "personalInfo":
-            print(personalInfo_list)
-        else:
-            print("Invalid Table Name") #prints if user enters table that does not exist
+            self.assertTrue(self.user_input == "transcript") #check user input
+            print(self.transcript_list) #print specified list/ table info
 
-  
-      
+        elif self.user_input == "personalInfo":
+            self.assertTrue(self.user_input == "personalInfo") #check user input
+            print(self.personalInfo_list) #print specified list/ table info
+        else:
+            print("Invalid table name")
 
     def tearDown(self):
         point.close()
-        connect_db.close()
+        connect_db.close() #end connection
 
 if __name__ == "__main__":
     unittest.main()
