@@ -32,15 +32,32 @@ class Access_db(unittest.TestCase):
     def test_input(self):
         print(self.instructions)
         print(self.descriptions)
-        #user input to select specific records from database
-        self.user_input = input("Enter a table name to view all records from a specific table\n or Enter a studentID to view all records for a student: ")
-  
-        point.execute(
-            "SELECT transcriptID FROM transcript"
-        )
-        for (transcriptID) in point:
-            print(f"TranscriptID: {transcriptID}")
 
+        student_list = []
+        point.execute("SELECT * FROM student")
+        for row in point:
+            #add table info into list 
+            student_list.append(row)
+        print(student_list)
+
+        
+        #user input to select specific records from database
+        #self.user_input = input("Enter a table name to view all records from a specific table\n or Enter a studentID to view all records for a student: ")
+  
+       # point.execute(
+        #    "SELECT transcriptID, credit_earned, credit_attempt, gpa, year, studentID FROM transcript"
+       # )
+       # for (transcriptID, credit_earned, credit_attempt, gpa, year, studentID) in point:
+           # print(f"TranscriptID: {transcriptID}")
+          #  print(f"Credits Earned: {credit_earned} ") 
+           # print(f"Credits Attempted: {credit_attempt}") 
+          #  print(f"GPA: {gpa}") 
+          #  print(f"Year: {year}") 
+          #  print(f"StudentID: {studentID}")
+
+    def tearDown(self):
+        point.close()
+        connect_db.close()
 
 if __name__ == "__main__":
     unittest.main()
