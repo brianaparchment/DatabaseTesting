@@ -17,7 +17,7 @@ try:
     )
 except mariadb.Error as e:
     print(f"Could not connect to MariaDB: {e}")
-    sys.exit(1)
+    sys.exit(1) #exit due to error 
 
 point = connect_db.cursor() #get cursor
 
