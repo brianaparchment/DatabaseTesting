@@ -40,7 +40,13 @@ class Access_db(unittest.TestCase):
             student_list.append(row)
         print(student_list)
 
-        
+        transcript_list = []
+        point.execute("SELECT * FROM transcript")
+        for row in point:
+            transcript_list.append(row)
+        print(transcript_list)
+
+
         #user input to select specific records from database
         #self.user_input = input("Enter a table name to view all records from a specific table\n or Enter a studentID to view all records for a student: ")
   
