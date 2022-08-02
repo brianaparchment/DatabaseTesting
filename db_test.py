@@ -1,3 +1,4 @@
+#The goal of this program is to allow users to read information from a remote database
 import sys
 import time
 import unittest
